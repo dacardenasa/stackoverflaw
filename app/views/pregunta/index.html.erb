@@ -1,1 +1,36 @@
-<h1>Soy el index</h1>
+<!-- Fila h1 y boton -->
+<div class="row button-row">
+  <div class="col">
+    <h1>Preguntas</h1>
+    <div class="enlace">
+      <%= link_to 'Hacer una pregunta', new_preguntum_path, class: "btn btn-dark custom-btn float-right"%>
+    </div>
+  </div>
+</div>
+
+<% 5.times.each do %>
+
+  <div class="row main-row">
+    <!-- Columnas para votos y respuestas-->
+    <div class="col-12 order-2 col-md-3 order-md-1">
+      <div class="row">
+      <div class="col-6 votes">
+        <div class="mini-counts"><span title="1 Votos">1</span></div>
+        <div>Votos</div>
+      </div>
+      <div class="col-6 answers">
+        <div class="mini-counts"><span title="0 respuestas">0</span></div>
+        <div>Respuestas</div>
+      </div>
+      </div>
+    </div>
+    <!-- Columna resumen pregunta -->
+    <div class="col-12 order-1 col-md-9 order-md-2 summary">
+      <div class="content">
+        <a href="#">Integracion Ajax a Ruby on Rails</a>
+        <p>Pregunto diego.cardenasaleg@gmail.com hace 5 horas.</p>
+      </div>
+    </div>
+  </div>
+
+<% end %>

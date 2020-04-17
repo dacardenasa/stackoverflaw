@@ -52,4 +52,4 @@ es:
       reset_password_instructions:
         subject: 'Instrucciones de cambio de contraseña'
       unlock_instructions:
-        subject: 'Instrucciones de desbloqueo
+        subject: 'Instrucciones de desbloqueo'

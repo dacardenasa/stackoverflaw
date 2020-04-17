@@ -1,1 +1,107 @@
 @import './bootstrap_custom.scss';
+
+/* Estilos Generales */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Fuentes */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body {
+  background-color: #EFF0F1;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Estilos Formulario Registro e Inicio de sesion */
+
+.new_user {
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05), 0 20px 48px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.1);
+  border-radius: 5px;
+}
+
+/* Estilos index.html.erb  Columna .button-row */
+
+.button-row {
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+.button-row .col h1 {
+  font-weight: bold;
+}
+
+.button-row .col .custom-btn {
+  transition: all 300ms;
+}
+
+.button-row .col .custom-btn:hover {
+  background-color: #f04500;
+  border: 1px solid #f04500;
+}
+
+/* Columna Votes and Answers */
+
+.main-row {
+  border-top: 1px solid #cad2da;
+}
+
+.main-row .votes, .answers {
+  text-align: center;
+  font-size: 16px;
+}
+
+.main-row .votes .mini-counts {
+  font-weight: bold;
+  padding-top: 5px;
+  font-size: 25px;
+}
+
+.main-row .answers .mini-counts {
+  font-weight: bold;
+  padding-top: 5px;
+  font-size: 25px;
+}
+
+.main-row .votes div:last-child {
+  color: #6c757d;
+}
+
+.main-row .answers div:last-child {
+  color: #6c757d;
+}
+
+/* Columna Summary  */
+
+.main-row .summary {
+  padding: 10px 0 0 40px;
+}
+
+@media (max-width: 576px) { 
+
+  .main-row .summary {
+    padding: 10px 20px 0 20px;
+  }
+
+}
+
+.main-row .summary a {
+  font-size: 20px;
+  color: #f04500;
+  transition: all 300ms;
+  text-decoration: none;
+}
+
+.main-row .summary a:hover {
+  color: #c9410b;
+}
+
+.main-row .summary p {
+  font-size: 16px;
+  color: #6c757d;
+}

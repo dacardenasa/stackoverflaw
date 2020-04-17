@@ -1,5 +1,4 @@
----
-es-CO:
+es:
   activerecord:
     errors:
       messages:
