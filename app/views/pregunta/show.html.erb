@@ -1,0 +1,51 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-md-10 col-md-offset-1 title-col">
+    <h3><strong><%= @pregunta.title %></strong></h3>
+    <h5 class="q-author">Pregunta realizada por <span><%= @pregunta.user.email %></span> hace <%= time_ago_in_words(@pregunta.created_at)%></h5>
+  </div>
+</div>
+<!-- Body column -->
+<div class="row justify-content-center mt-3 mb-5">
+  <div class="col-1 col-sm-1 col-md-1 text-right arrow-col">
+    <div class="content-arrow">  
+      <a href="#">
+        <i class="fas fa-caret-up"></i>
+      </a>
+      <div class="text">
+        <span>0</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-10 col-sm-10 col-md-10 body-col">
+    <section class="p-body">
+      <%= markdown(@pregunta.body) %>
+    </section>
+
+    <% @comments.each do |comment| %>
+      <div class="comments">
+        <h5>Comentario realizado por <span><%= comment.user.email %></span> hace <%= time_ago_in_words(comment.created_at) %></h5>
+        <p><%= markdown comment.body %></p>
+      </div>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <%= form_for @comment, url: comments_path(@pregunta) do |f| %>
+        <div class="form-group">
+          <%= f.text_area :body, placeholder: "Agrega un comentario", class: "form-control" %>
+        </div>
+        <%= f.submit 'Comentar', class: "btn btn-dark float-right" %>
+      <% end %>
+    <% end %>
+
+    <% if @comment_post and @comment_post.errors.any? %>
+      <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+        <% @comment_post.errors.full_messages.each do | message | %>
+          <div class="text-center"><%= message %></div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

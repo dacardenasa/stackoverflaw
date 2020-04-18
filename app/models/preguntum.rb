@@ -12,4 +12,8 @@
 
 class Preguntum < ApplicationRecord
   belongs_to :user
+  has_many :comments, :dependent => :destroy
+  has_many :users, through: :comments
+  # Validations 
+  validates :title, :body, presence: true
 end

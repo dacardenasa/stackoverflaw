@@ -7,9 +7,7 @@
     </div>
   </div>
 </div>
-
-<% 5.times.each do %>
-
+<% @preguntas.each do |pregunta| %>
   <div class="row main-row">
     <!-- Columnas para votos y respuestas-->
     <div class="col-12 order-2 col-md-3 order-md-1">
@@ -27,10 +25,9 @@
     <!-- Columna resumen pregunta -->
     <div class="col-12 order-1 col-md-9 order-md-2 summary">
       <div class="content">
-        <a href="#">Integracion Ajax a Ruby on Rails</a>
-        <p>Pregunto diego.cardenasaleg@gmail.com hace 5 horas.</p>
+        <a href="<%= preguntum_path(pregunta) %>"><%= pregunta.title %></a>
+        <p>Pregunto <%= pregunta.user.email %> hace <%= time_ago_in_words(pregunta.created_at) %>.</p>
       </div>
     </div>
   </div>
-
 <% end %>
