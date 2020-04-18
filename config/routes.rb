@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/pregunta/:id/comments', to: 'comments#create', as: 'comments'
   resources :pregunta
   devise_for :users
   root 'pregunta#index'

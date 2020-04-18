@@ -1,9 +1,9 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Ya tienes una cuenta? Iniciar Sesion", new_session_path(resource_name), class: "text-muted text-decoration-none" %><br />
+  <%= link_to "Ya tienes una cuenta? Iniciar Sesion", new_session_path(resource_name), class: "already-account text-muted text-decoration-none" %><br />
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Aun no tienes una cuenta? Registrate", new_registration_path(resource_name), class: "text-muted text-decoration-none" %><br />
+  <%= link_to "Aun no tienes una cuenta? Registrate", new_registration_path(resource_name), class: "create-account text-muted text-decoration-none" %><br />
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>

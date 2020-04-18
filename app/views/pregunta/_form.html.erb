@@ -1,0 +1,31 @@
+<div class="row justify-content-center">
+  <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 mt-3">
+    <div class="link-back mb-3">
+      <%= link_to '/atras', root_path, class: "text-decoration-none text-dark" %>   
+    </div>
+    <!-- Show errors if submit form has -->
+    <% if @pregunta and @pregunta.errors.any? %>
+      <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+        <% @pregunta.errors.full_messages.each do | message | %>
+          <div class="text-center"><%= message %></div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= form_for @pregunta do |f| %>
+      <h1><strong><%= form_title %></strong></h1>
+      <div class="form-group">
+        <%= f.label 'Titulo' %><br />
+        <%= f.text_field :title, autofocus: true, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Descripción' %><br />
+        <%= f.text_area :body, autofocus: true, cols: 30, rows: 10, class: "form-control" %>
+      </div>
+      <%= f.submit form_title, class: "btn btn-dark btn-block"%>
+    <% end %>
+  </div>
+</div>

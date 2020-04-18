@@ -7,6 +7,8 @@
   padding: 0;
 }
 
+*:focus { outline: none; } 
+
 /* Fuentes */
 
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
@@ -14,6 +16,15 @@
 body {
   background-color: #EFF0F1;
   font-family: 'Roboto', sans-serif;
+}
+
+p { 
+  line-height: 1.6em; 
+}
+
+input[type="submit"]:hover {
+  background-color: #f04500;
+  border: 1px solid #f04500;
 }
 
 /* Estilos Formulario Registro e Inicio de sesion */
@@ -25,7 +36,57 @@ body {
   border-radius: 5px;
 }
 
-/* Estilos index.html.erb  Columna .button-row */
+.new_preguntum {
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05), 0 20px 48px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.1);
+  border-radius: 5px;
+}
+
+/* Estilos enlaces Navbar a*/
+
+.link-back a {
+  font-size: 25px;
+  transition: all 300ms;
+}
+
+.link-back a:hover {
+  color: #f04500 !important;
+}
+
+.nav li a {
+  transition: all 300ms;
+}
+
+.nav li a:hover {
+  color: #f04500 !important;
+  border: 0;
+}
+
+.navbar-brand span {
+  transition: all 300ms;
+}
+
+.navbar-brand:hover span {
+  text-shadow: 0px 0px 2px #f04500;
+  color: #f04500 !important;
+}
+
+.already-account {
+  transition: all 300ms;
+}
+
+.already-account:hover {
+  color: #f04500 !important;
+}
+
+.create-account {
+  transition: all 300ms;
+}
+
+.create-account:hover {
+  color: #f04500 !important;
+}
 
 .button-row {
   margin-top: 50px;
@@ -44,6 +105,8 @@ body {
   background-color: #f04500;
   border: 1px solid #f04500;
 }
+
+/* Estilos index.html.erb  Columna .button-row */
 
 /* Columna Votes and Answers */
 
@@ -82,7 +145,19 @@ body {
   padding: 10px 0 0 40px;
 }
 
+.main-row .summary .content a:hover {
+  color: #c9410b;
+}
+
 @media (max-width: 576px) { 
+
+  .main-row .votes {
+    padding-left: 30px;
+  }
+
+  .main-row .votes, .answers {
+    text-align: left;
+  }
 
   .main-row .summary {
     padding: 10px 20px 0 20px;
@@ -104,4 +179,77 @@ body {
 .main-row .summary p {
   font-size: 16px;
   color: #6c757d;
+}
+
+/* Estilos contenedor pregunta */
+
+.title-col {
+  padding-left: 0 !important;
+  color: #f04500;
+}
+
+.title-col .q-author {
+  color: #6c757d;
+}
+
+.title-col .q-author span{
+  color: #f04500;
+}
+
+.arrow-col {
+  padding-right: 10px;
+}
+
+.content-arrow a {
+  text-decoration: none;
+  color: #000;
+}
+
+.content-arrow a:hover {
+  color: #f04500;
+}
+
+.content-arrow a > i {
+  font-size: 40px;
+  margin-top: 10px;
+}
+
+.content-arrow .text {
+  padding-right: 6px;
+}
+
+.content-arrow .text span {
+  font-size: 25px;
+}
+
+@media (max-width: 767px) { 
+
+  .title-col {
+    padding-left: 15px !important;
+  }
+  
+  .content-arrow .text {
+    padding-right: 1px;
+  }
+  
+}
+
+/* Estilos Comentario Pregunta */
+
+.body-col .p-body {
+  border-bottom: 1px solid #d3d1d1;
+  margin-bottom: 10px;
+}
+
+
+.body-col .comments {
+  border-top: 1px solid #d3d1d1;
+  padding: 5px;
+  color: #6c757d;
+  background-color: white;
+  margin-bottom: 15px;
+}
+
+.body-col .comments span {
+  color: #f04500
 }
