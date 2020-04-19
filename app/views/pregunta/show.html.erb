@@ -4,17 +4,31 @@
     <h5 class="q-author">Pregunta realizada por <span><%= @pregunta.user.email %></span> hace <%= time_ago_in_words(@pregunta.created_at)%></h5>
   </div>
 </div>
-<!-- Body column -->
-<div class="row justify-content-center mt-3 mb-5">
+
+<!-- Mostrar el cuerpo de la pregunta-->
+<div class="row justify-content-center mt-3 mb-2">
   <div class="col-1 col-sm-1 col-md-1 text-right arrow-col">
+
+    <% if @pregunta.voted_by? current_user %>
     <div class="content-arrow">  
-      <a href="#">
+      <%= link_to preguntum_votescomments_path(@pregunta), method: :delete do %>
         <i class="fas fa-caret-up"></i>
-      </a>
+      <% end %>
       <div class="text">
-        <span>0</span>
+        <span><%= @pregunta.votecomments.count %></span>
       </div>
     </div>
+    <% else %>
+      <div class="content-arrow">  
+      <%= link_to preguntum_votescomments_path(@pregunta), method: :post do %>
+        <i class="fas fa-caret-up"></i>
+      <% end %>
+      <div class="text">
+        <span><%= @pregunta.votecomments.count %></span>
+      </div>
+    </div>
+    <% end %>
+
   </div>
   <div class="col-10 col-sm-10 col-md-10 body-col">
     <section class="p-body">
@@ -24,7 +38,9 @@
     <% @comments.each do |comment| %>
       <div class="comments">
         <h5>Comentario realizado por <span><%= comment.user.email %></span> hace <%= time_ago_in_words(comment.created_at) %></h5>
-        <p><%= markdown comment.body %></p>
+        <section>
+          <%= markdown comment.body %>
+        </section>
       </div>
     <% end %>
 
@@ -49,3 +65,117 @@
     <% end %>
   </div>
 </div>
+<!-- Fin contenedr pregunta -->
+
+
+<!-- Mostrar todas las respuestas de esta pregunta -->
+<% if @answers_questions and @answers_questions.count > 0 %>
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-md-offset-1 answer-col">
+      <div class="r-title">
+        <h2><%= @answers_questions.count %> Respuesta(s)</h2>
+      </div>
+    </div>
+  </div>
+  <% @answers_questions.each do |answer_question| %>
+    <div class="row justify-content-center mt-2 mb-2">
+      <div class="col-1 col-sm-1 col-md-1 text-right arrow-col">
+      <!-- Bloque de codigo para validar votos-->
+        <% if @pregunta.voted_by? current_user %>
+        <div class="content-arrow">  
+          <a href="#">
+            <i class="fas fa-caret-up"></i>
+          </a>
+          <div class="text">
+            <span>0</span>
+          </div>
+        </div>
+        <% else %>
+          <div class="content-arrow">  
+          <a href="#">
+            <i class="fas fa-caret-up"></i>
+          </a>
+          <div class="text">
+            <span>0</span>
+          </div>
+        </div>
+        <% end %>
+      <!-- Fin bloque -->
+      </div>
+      <div class="col-10 col-sm-10 col-md-10 body-col">
+        <section class="comments">
+          <h5 class="q-author">Respuesta aportada por <span><%= answer_question.user.email %></span> hace <%= time_ago_in_words(answer_question.created_at)%></h5>
+          <%= markdown(answer_question.body) %>
+        </section>
+
+        <!-- Ojo crear modelo, controlador y rutas nuevas  para esta caracteristica -->
+
+        <% if user_signed_in? %>
+          <%= form_for @comment, url: comments_path(@pregunta) do |f| %>
+            <div class="form-group">
+              <%= f.text_area :body, placeholder: "Agrega un comentario", class: "form-control" %>
+            </div>
+            <%= f.submit 'Comentar', class: "btn btn-dark float-right" %>
+          <% end %>
+        <% end %>
+
+        <% if @comment_post and @comment_post.errors.any? %>
+          <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+            <% @comment_post.errors.full_messages.each do | message | %>
+              <div class="text-center"><%= message %></div>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            <% end %>
+          </div>
+        <% end %>
+
+        <!-- Hasta aqui -- recuerdalo pues ------------------>
+
+      </div>
+    </div>
+  <% end %>
+
+<% else %>
+
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-md-offset-1 answer-col">
+      <div class="r-title">
+        <h2><%= @answers_questions.count %> Respuesta(s)</h2>
+      </div>
+      <p>Si conoces a alguien que pueda responder esta pregunta, por favor timbrale y dile que lo necesitamos con urgencia.</p>
+    </div>
+  </div>
+
+<% end %>
+
+<!-- Fin contenedor respuestas a la pregunta-->
+
+<!-- Espacio para mostrar formulario respuesta al comentario -->
+<% if user_signed_in? %>
+  <div class="row justify-content-center mb-3">
+    <div class="col-sm-11 col-md-11 answer-col">
+      <div class="r-title">
+        <h2>Tu respuesta</h2>
+      </div>
+      <%= form_for @answer, url: answers_path(@pregunta) do |f| %>
+        <div class="form-group">
+          <%= f.text_area :body, placeholder: "Agrega respuesta", class: "form-control" %>
+        </div>
+        <%= f.submit 'Agregar respuesta', class: "btn btn-dark float-right" %>
+      <% end %>
+
+      <% if @answer_post and @answer_post.errors.any? %>
+        <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+          <% @answer_post.errors.full_messages.each do | message | %>
+            <div class="text-center"><%= message %></div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          <% end %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+<% end %>

@@ -16,7 +16,7 @@
     <% end %>
 
     <%= form_for @pregunta do |f| %>
-      <h1><strong><%= form_title %></strong></h1>
+      <h2><strong><%= form_title %></strong></h2>
       <div class="form-group">
         <%= f.label 'Titulo' %><br />
         <%= f.text_field :title, autofocus: true, class: "form-control" %>

@@ -22,6 +22,10 @@ p {
   line-height: 1.6em; 
 }
 
+h2 {
+  color: #f04500;
+}
+
 input[type="submit"]:hover {
   background-color: #f04500;
   border: 1px solid #f04500;
@@ -241,15 +245,33 @@ input[type="submit"]:hover {
   margin-bottom: 10px;
 }
 
-
 .body-col .comments {
   border-top: 1px solid #d3d1d1;
-  padding: 5px;
+  padding: 15px 15px 15px 15px;
   color: #6c757d;
   background-color: white;
   margin-bottom: 15px;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05), 0 20px 48px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.1);
 }
 
 .body-col .comments span {
   color: #f04500
+}
+
+.body-col .comments section{
+  padding: 5px 0 5px 15px;
+}
+
+.res-col .r-body {
+  background-color: white;
+  padding: 15px 15px 15px 15px;
+  margin-bottom: 15px;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05), 0 20px 48px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.answer-col .r-title {
+  border-bottom: 1px solid #d3d1d1;
+  margin-bottom: 10px;
 }
