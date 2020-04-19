@@ -1,5 +1,6 @@
 class VotescommentsController < ApplicationController
   before_action :authenticate_user!
+  
   def create
     pregunta = Preguntum.find(params[:preguntum_id])
     pregunta.votecomments.create(user: current_user)

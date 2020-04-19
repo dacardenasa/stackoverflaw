@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post '/pregunta/:id/answers', to: 'answers#create', as: 'answers'
   resources :pregunta do
     resource :votescomments, only: [:create, :destroy]
+    resource :voteanswers, only: [:create, :destroy]
   end
   devise_for :users
   root 'pregunta#index'
