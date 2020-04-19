@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_18_144433) do
+ActiveRecord::Schema.define(version: 2020_04_18_212814) do
+
+  create_table "answers", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "preguntum_id"
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["preguntum_id"], name: "index_answers_on_preguntum_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
@@ -43,7 +53,20 @@ ActiveRecord::Schema.define(version: 2020_04_18_144433) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "votecomments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "preguntum_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["preguntum_id"], name: "index_votecomments_on_preguntum_id"
+    t.index ["user_id"], name: "index_votecomments_on_user_id"
+  end
+
+  add_foreign_key "answers", "pregunta"
+  add_foreign_key "answers", "users"
   add_foreign_key "comments", "pregunta"
   add_foreign_key "comments", "users"
   add_foreign_key "pregunta", "users"
+  add_foreign_key "votecomments", "pregunta"
+  add_foreign_key "votecomments", "users"
 end
