@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :votecomments
   has_many :answers
+  has_many :voteanswers
   has_many :preguntums, through: :comments
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

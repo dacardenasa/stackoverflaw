@@ -13,7 +13,13 @@
 class Answer < ApplicationRecord
   belongs_to :user
   belongs_to :preguntum
+  has_many :voteanswers
 
   validates :body, presence: true
+
+  # Method  to validate vote
+  def voted_by?(user)
+    voteanswers.exists?(user: user)
+  end
 
 end
