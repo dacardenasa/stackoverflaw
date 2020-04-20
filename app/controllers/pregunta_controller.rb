@@ -14,16 +14,17 @@ class PreguntaController < ApplicationController
     if @pregunta.save
       redirect_to root_path
     else
+      @errores = @pregunta.errors.full_messages
       render :new
     end
   end
 
   def show
     @pregunta = Preguntum.find(params[:id])
-    @comments = @pregunta.comments.order(created_at: :desc)
     @comment = Comment.new
     @answer = Answer.new
     @comment_answer =  CommentAnswer.new
+    @comments = @pregunta.comments.order(created_at: :desc)
     @answers_questions = @pregunta.answers.order(created_at: :desc)
   end
 

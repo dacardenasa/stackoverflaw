@@ -3,18 +3,7 @@
     <div class="link-back mb-3">
       <%= link_to '/atras', root_path, class: "text-decoration-none text-dark" %>   
     </div>
-    <!-- Show errors if submit form has -->
-    <% if @pregunta and @pregunta.errors.any? %>
-      <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
-        <% @pregunta.errors.full_messages.each do | message | %>
-          <div class="text-center"><%= message %></div>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        <% end %>
-      </div>
-    <% end %>
-
+    <%= render 'errores' %>
     <%= form_for @pregunta do |f| %>
       <h2><strong><%= form_title %></strong></h2>
       <div class="form-group">

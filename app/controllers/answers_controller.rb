@@ -5,15 +5,16 @@ class AnswersController < ApplicationController
     @pregunta = Preguntum.where(id: params[:id]).take
     @answer_post = @pregunta.answers.create(params_answers)
 
-    # Instance vars to render if failed to save comment
-    @comment = Comment.new
-    @answer = Answer.new
-    @comments = @pregunta.comments.order(created_at: :desc)
-    @answers_questions = @pregunta.answers.order(created_at: :desc)
-
     if @answer_post.save
       redirect_to preguntum_path(@pregunta), notice: 'Respuesta agregada'
     else
+      # Instance vars to render if failed to save comment
+      @comment = Comment.new
+      @answer = Answer.new
+      @comment_answer =  CommentAnswer.new
+      @comments = @pregunta.comments.order(created_at: :desc)
+      @answers_questions = @pregunta.answers.order(created_at: :desc)
+      @errores = @answer_post.errors.full_messages
       render 'pregunta/show'
     end
   end
