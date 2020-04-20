@@ -60,9 +60,15 @@ input[type="submit"]:hover {
   }
 }
 
+@media(max-width: 767px) {
+  .new_user .logo {
+    left: 190px;
+  }
+}
+
 @media(max-width: 575px) {
   .new_user .logo {
-    left: 151px;
+    left: 196px;
   }
 }
 
