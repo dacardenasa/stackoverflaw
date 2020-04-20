@@ -25,7 +25,6 @@ class PreguntaController < ApplicationController
     @answer = Answer.new
     @comment_answer =  CommentAnswer.new
     @answers_questions = @pregunta.answers.order(created_at: :desc)
-
   end
 
   private
