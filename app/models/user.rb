@@ -26,6 +26,10 @@ class User < ApplicationRecord
 
   has_many :preguntums, through: :comments
   
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+
+  validates :email, uniqueness: true, format: /@/
+  validates :password, presence: true, on: :create
+  validates :password, length: { in: 6..20 }, allow_nil: true
+
 end
