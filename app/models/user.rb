@@ -19,7 +19,13 @@ class User < ApplicationRecord
   has_many :votecomments
   has_many :answers
   has_many :voteanswers
+  
+  has_many :CommentAnswers
+  # Verificar si esta asociacion es correcta
+  has_many :answers, through: :CommentAnswers
+
   has_many :preguntums, through: :comments
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end

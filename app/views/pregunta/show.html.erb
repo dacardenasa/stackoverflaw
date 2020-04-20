@@ -1,3 +1,14 @@
+<% if @comment_answer and @comment_answer.errors.any? %>
+  <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+    <% @comment_answer.errors.full_messages.each do | message | %>
+      <div class="text-center"><%= message %></div>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    <% end %>
+  </div>
+<% end %>
+
 <div class="row justify-content-center mt-5">
   <div class="col-md-10 col-md-offset-1 title-col">
     <h3><strong><%= @pregunta.title %></strong></h3>
@@ -67,7 +78,6 @@
 </div>
 <!-- Fin contenedr pregunta -->
 
-
 <!-- Mostrar todas las respuestas de esta pregunta -->
 <% if @answers_questions and @answers_questions.count > 0 %>
   <div class="row justify-content-center">
@@ -80,9 +90,6 @@
   <% @answers_questions.each do |answer_question| %>
     <div class="row justify-content-center mt-2 mb-2">
       <div class="col-1 col-sm-1 col-md-1 text-right arrow-col">
-
-
-
       <% if answer_question.voted_by? current_user %>
         <div class="content-arrow">  
           <%= link_to preguntum_voteanswers_path(answer_question), method: :delete do %>
@@ -102,10 +109,6 @@
           </div>
         </div>
       <% end %>
-
-
-
-
       </div>
       <div class="col-10 col-sm-10 col-md-10 body-col">
         <section class="comments">
@@ -113,30 +116,26 @@
           <%= markdown(answer_question.body) %>
         </section>
 
-        <!-- Ojo crear modelo, controlador y rutas nuevas  para esta caracteristica -->
+        <!-- Crea comentarios que tenga la respuesta-->
+        <% if answer_question.CommentAnswers.count > 0 %>
+          <% answer_comment = answer_question.CommentAnswers %>
+            <% answer_comment.each do |f| %>
+              <section class="comments">
+                <h5 class="q-author">Comentado por <span>
+                <%= f.user.email %></span> hace <%= time_ago_in_words(f.created_at)%></h5>
+                <%= markdown(f.body) %>
+              </section>
+            <% end %>
+        <% end %>
 
         <% if user_signed_in? %>
-          <%= form_for @comment, url: comments_path(@pregunta) do |f| %>
+          <%= form_for @comment_answer, url: comment_answers_path(answer_question) do |f| %>
             <div class="form-group">
-              <%= f.text_area :body, placeholder: "Agrega un comentario", class: "form-control" %>
+              <%= f.text_area :body, placeholder: "Agrega un comentario a esta respuesta", class: "form-control" %>
             </div>
-            <%= f.submit 'Comentar', class: "btn btn-dark float-right" %>
+            <%= f.submit 'Comentar Respuesta', class: "btn btn-dark float-right" %>
           <% end %>
         <% end %>
-
-        <% if @comment_post and @comment_post.errors.any? %>
-          <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
-            <% @comment_post.errors.full_messages.each do | message | %>
-              <div class="text-center"><%= message %></div>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            <% end %>
-          </div>
-        <% end %>
-
-        <!-- Hasta aqui -- recuerdalo pues ------------------>
-
       </div>
     </div>
   <% end %>
@@ -184,3 +183,4 @@
     </div>
   </div>
 <% end %>
+

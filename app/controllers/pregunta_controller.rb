@@ -23,7 +23,9 @@ class PreguntaController < ApplicationController
     @comments = @pregunta.comments.order(created_at: :desc)
     @comment = Comment.new
     @answer = Answer.new
+    @comment_answer =  CommentAnswer.new
     @answers_questions = @pregunta.answers.order(created_at: :desc)
+
   end
 
   private
