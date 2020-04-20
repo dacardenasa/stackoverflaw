@@ -7,27 +7,55 @@
     </div>
   </div>
 </div>
-<% @preguntas.each do |pregunta| %>
-  <div class="row main-row">
-    <!-- Columnas para votos y respuestas-->
-    <div class="col-12 order-2 col-md-3 order-md-1">
-      <div class="row">
-      <div class="col-6 votes">
-        <div class="mini-counts"><span title="<%= pregunta.votecomments.count %> Votos"><%= pregunta.votecomments.count %></span></div>
-        <div>Votos</div>
+
+<% if @questions %>
+  <% @questions.each do |question| %>
+    <div class="row main-row">
+      <!-- Columnas para votos y respuestas-->
+      <div class="col-12 order-2 col-md-3 order-md-1">
+        <div class="row">
+        <div class="col-6 votes">
+          <div class="mini-counts"><span title="<%= question.votecomments.count %> Votos"><%= question.votecomments.count %></span></div>
+          <div>Votos</div>
+        </div>
+        <div class="col-6 answers">
+          <div class="mini-counts"><span title="<%= question.answers.count %> respuestas"><%= question.answers.count %></span></div>
+          <div>Respuestas</div>
+        </div>
+        </div>
       </div>
-      <div class="col-6 answers">
-        <div class="mini-counts"><span title="<%= pregunta.answers.count %> respuestas"><%= pregunta.answers.count %></span></div>
-        <div>Respuestas</div>
-      </div>
+      <!-- Columna resumen pregunta -->
+      <div class="col-12 order-1 col-md-9 order-md-2 summary">
+        <div class="content">
+          <a href="<%= preguntum_path(question) %>"><%= question.title %></a>
+          <p>Pregunto <%= question.user.email %> hace <%= time_ago_in_words(question.created_at) %>.</p>
+        </div>
       </div>
     </div>
-    <!-- Columna resumen pregunta -->
-    <div class="col-12 order-1 col-md-9 order-md-2 summary">
-      <div class="content">
-        <a href="<%= preguntum_path(pregunta) %>"><%= pregunta.title %></a>
-        <p>Pregunto <%= pregunta.user.email %> hace <%= time_ago_in_words(pregunta.created_at) %>.</p>
+  <% end %>
+<% else %>
+  <% @preguntas.each do |pregunta| %>
+    <div class="row main-row">
+      <!-- Columnas para votos y respuestas-->
+      <div class="col-12 order-2 col-md-3 order-md-1">
+        <div class="row">
+        <div class="col-6 votes">
+          <div class="mini-counts"><span title="<%= pregunta.votecomments.count %> Votos"><%= pregunta.votecomments.count %></span></div>
+          <div>Votos</div>
+        </div>
+        <div class="col-6 answers">
+          <div class="mini-counts"><span title="<%= pregunta.answers.count %> respuestas"><%= pregunta.answers.count %></span></div>
+          <div>Respuestas</div>
+        </div>
+        </div>
+      </div>
+      <!-- Columna resumen pregunta -->
+      <div class="col-12 order-1 col-md-9 order-md-2 summary">
+        <div class="content">
+          <a href="<%= preguntum_path(pregunta) %>"><%= pregunta.title %></a>
+          <p>Pregunto <%= pregunta.user.email %> hace <%= time_ago_in_words(pregunta.created_at) %>.</p>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>

@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   post '/pregunta/:id/answers', to: 'answers#create', as: 'answers'
   # Nested route to create comments about user answer
   post '/pregunta/:id/comment_answers', to: 'comment_answers#create', as: 'comment_answers'
+
+  get '/searchanswers/show', to: 'searchanswers#show', as: 'searchanswers'
+
+
   # Complete routes about pregunta controller
   resources :pregunta do
     # Set route to create and destroy votes to question 
