@@ -1,6 +1,7 @@
 class SearchanswersController < ApplicationController
   def show 
-    searchs = Preguntum.all.where("title LIKE ?", "%#{params[:search].downcase}%")
+    question = Preguntum.arel_table
+    searchs = Preguntum.where(question[:title].matches("%#{params[:search]}%"))
     if searchs.count > 0
       @questions = searchs
       render 'pregunta/index'
