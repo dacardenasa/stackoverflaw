@@ -7,8 +7,6 @@ Rails.application.routes.draw do
   post '/pregunta/:id/comment_answers', to: 'comment_answers#create', as: 'comment_answers'
 
   get '/searchanswers/show', to: 'searchanswers#show', as: 'searchanswers'
-
-
   # Complete routes about pregunta controller
   resources :pregunta do
     # Set route to create and destroy votes to question 
@@ -20,4 +18,7 @@ Rails.application.routes.draw do
   devise_for :users
   # Config view index as root web page from controller pregunta
   root 'pregunta#index'
+  # Redireccionar rutas desconocidas desde la url
+  get '*path' => redirect('/')
+
 end
