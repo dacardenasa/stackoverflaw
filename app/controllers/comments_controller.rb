@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
       @answer = Answer.new
       @comments = @pregunta.comments.order(created_at: :desc)
       @answers_questions = @pregunta.answers.order(created_at: :desc)
-      @errores = @comment_post.errors.full_messages
+      @errores = @comment_ans.errors.full_messages
       render 'pregunta/show'
     end
   end
