@@ -44,6 +44,7 @@
         </section>
       </div>
     <% end %>
+    <!-- Formulario para crear comentario a la pregunta -->
     <% if user_signed_in? %>
       <%= form_for @comment, url: comments_path(@pregunta) do |f| %>
         <div class="form-group">
@@ -57,7 +58,7 @@
 <!-- Fin contenedr pregunta -->
 
 <!-- Mostrar todas las respuestas de esta pregunta -->
-<% if @answers_questions and @answers_questions.count > 0 %>
+<% if @answers_questions.count > 0 %>
   <div class="row justify-content-center">
     <div class="col-md-10 col-md-offset-1 answer-col">
       <div class="r-title">
@@ -95,21 +96,24 @@
             <%= markdown(answer_question.body) %>
           </section>
         </div>
+
         <!-- Crea comentarios que tenga la respuesta-->
-        <% if answer_question.CommentAnswers.count > 0 %>
-          <% answer_comment = answer_question.CommentAnswers %>
-            <% answer_comment.each do |f| %>
+        <% if answer_question.comments.count > 0 %>
+            <% answer_question.comments.each do |comment_ans| %>
             <div class="comments">
               <h5 class="q-author">Comentado por <span>
-              <%= f.user.email %></span> hace <%= time_ago_in_words(f.created_at)%></h5>
+              <%= comment_ans.user.email %></span> hace <%= time_ago_in_words(comment_ans.created_at)%></h5>
               <section>
-                <%= markdown(f.body) %>
+                <%= markdown(comment_ans.body) %>
               </section>
             </div>
             <% end %>
         <% end %>
+        <!-- Fin comentarios respuesta-->
+        
+        <!-- Formulario para crear comentario a la respuesta -->
         <% if user_signed_in? %>
-          <%= form_for @comment_answer, url: comment_answers_path(answer_question) do |f| %>
+          <%= form_for @comment, url: comment_answers_path(answer_question) do |f| %>
             <div class="form-group">
               <%= f.text_area :body, placeholder: "Agrega un comentario a esta respuesta", class: "form-control" %>
             </div>

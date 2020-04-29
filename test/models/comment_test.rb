@@ -2,12 +2,13 @@
 #
 # Table name: comments
 #
-#  id           :integer          not null, primary key
-#  user_id      :integer
-#  preguntum_id :integer
-#  body         :text
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id               :integer          not null, primary key
+#  user_id          :integer
+#  body             :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  commentable_type :string
+#  commentable_id   :integer
 #
 
 require 'test_helper'
