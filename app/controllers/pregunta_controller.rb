@@ -23,7 +23,7 @@ class PreguntaController < ApplicationController
     @pregunta = Preguntum.find(params[:id])
     @comment = Comment.new
     @answer = Answer.new
-    @comment_answer =  CommentAnswer.new
+    
     @comments = @pregunta.comments.order(created_at: :desc)
     @answers_questions = @pregunta.answers.order(created_at: :desc)
   end

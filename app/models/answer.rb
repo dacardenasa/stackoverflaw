@@ -14,8 +14,9 @@ class Answer < ApplicationRecord
   belongs_to :user
   belongs_to :preguntum
   has_many :voteanswers
-  has_many :CommentAnswers, :dependent => :destroy
-  has_many :users, through: :CommentAnswers
+  has_many :comments, as: :commentable
+  # has_many :CommentAnswers, :dependent => :destroy
+  # has_many :users, through: :CommentAnswers
   
   validates :body, presence: true
 

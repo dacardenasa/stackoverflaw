@@ -6,12 +6,29 @@ class CommentsController < ApplicationController
     @comment_post = @pregunta.comments.create(params_comment)
 
     if @comment_post.save
-      redirect_to preguntum_path(@pregunta), notice: 'Comentario agregado'
+      redirect_to preguntum_path(@pregunta), notice: 'Comentario agregado a la pregunta'
     else
       # Instance vars to render if failed to save comment
       @comment = Comment.new
       @answer = Answer.new
-      @comment_answer =  CommentAnswer.new
+      @comments = @pregunta.comments.order(created_at: :desc)
+      @answers_questions = @pregunta.answers.order(created_at: :desc)
+      @errores = @comment_post.errors.full_messages
+      render 'pregunta/show'
+    end
+  end
+
+  def comment_answer
+    @answer = Answer.where(id: params[:id]).take
+    @pregunta = @answer.preguntum
+    @comment_ans = @answer.comments.create(params_comment)
+
+    if @comment_ans.save
+      redirect_to preguntum_path(@pregunta), notice: 'Comentario agregado a la respuesta'
+    else
+      # Instance vars to render if failed to save comment
+      @comment = Comment.new
+      @answer = Answer.new
       @comments = @pregunta.comments.order(created_at: :desc)
       @answers_questions = @pregunta.answers.order(created_at: :desc)
       @errores = @comment_post.errors.full_messages

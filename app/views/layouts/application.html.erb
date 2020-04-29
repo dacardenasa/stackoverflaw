@@ -11,19 +11,22 @@
   </head>
 
   <body>
+
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <div class="container">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="navbar-brand" href="<%= root_path %>">
+              <img src="<%= asset_path('icono.png')%>" width="30" height="30" class="d-inline-block align-top" alt="">
+              Stack<span class="text-muted span-over ">overflaw</span>
+            </a>
+          </li>
+        </ul>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="navbar-brand" href="<%= root_path %>">
-                <img src="<%= asset_path('icono.png')%>" width="30" height="30" class="d-inline-block align-top" alt="">
-                Stack<span class="text-muted span-over ">overflaw</span>
-              </a>
-            </li>
           </ul>
           <% if signed_in? %>
             <ul class="nav navbar-nav">
@@ -48,6 +51,7 @@
         </div>
       </div>
     </nav>
+
     <div class="container">  
       <% if flash[:notice] %>
         <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
