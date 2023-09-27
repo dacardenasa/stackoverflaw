@@ -30,7 +30,9 @@
           </ul>
           <% if signed_in? %>
             <ul class="nav navbar-nav">
-              <li><%= link_to "Salir", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+              <li>
+                <%= button_to "Salir", destroy_user_session_path, :method => :delete, class: "custom-button" %>
+              </li>
             </ul>
           <% else %>
             <ul class="nav navbar-nav">

@@ -37,15 +37,15 @@ input[type="submit"]:hover {
 
 .new_user {
   background-color: white;
-  padding: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05), 0 20px 48px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.1);
   border-radius: 5px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05), 0 20px 48px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.1);
+  padding: 20px;
 }
 
 .new_user .logo {
+  left: 153px;
   position: absolute;
   top: -30px;
-  left: 153px;
 }
 
 @media(max-width: 1199px) {
@@ -78,9 +78,9 @@ input[type="submit"]:hover {
 
 .new_preguntum {
   background-color: white;
-  padding: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05), 0 20px 48px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.1);
   border-radius: 5px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05), 0 20px 48px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.1);
+  padding: 20px;
 }
 
 /* Estilos enlaces Navbar a*/
@@ -99,8 +99,8 @@ input[type="submit"]:hover {
 }
 
 .nav li a:hover {
-  color: #f04500 !important;
   border: 0;
+  color: #f04500 !important;
 }
 
 .navbar-brand span {
@@ -108,8 +108,8 @@ input[type="submit"]:hover {
 }
 
 .navbar-brand:hover span {
-  text-shadow: 0px 0px 2px #f04500;
   color: #f04500 !important;
+  text-shadow: 0px 0px 2px #f04500;
 }
 
 .already-account {
@@ -129,8 +129,8 @@ input[type="submit"]:hover {
 }
 
 .button-row {
-  margin-top: 50px;
   margin-bottom: 40px;
+  margin-top: 50px;
 }
 
 .button-row .col h1 {
@@ -155,20 +155,20 @@ input[type="submit"]:hover {
 }
 
 .main-row .votes, .answers {
-  text-align: center;
   font-size: 16px;
+  text-align: center;
 }
 
 .main-row .votes .mini-counts {
+  font-size: 25px;
   font-weight: bold;
   padding-top: 5px;
-  font-size: 25px;
 }
 
 .main-row .answers .mini-counts {
+  font-size: 25px;
   font-weight: bold;
   padding-top: 5px;
-  font-size: 25px;
 }
 
 .main-row .votes div:last-child {
@@ -206,10 +206,10 @@ input[type="submit"]:hover {
 }
 
 .main-row .summary a {
-  font-size: 20px;
   color: #f04500;
-  transition: all 300ms;
+  font-size: 20px;
   text-decoration: none;
+  transition: all 300ms;
 }
 
 .main-row .summary a:hover {
@@ -217,15 +217,15 @@ input[type="submit"]:hover {
 }
 
 .main-row .summary p {
-  font-size: 16px;
   color: #6c757d;
+  font-size: 16px;
 }
 
 /* Estilos contenedor pregunta */
 
 .title-col {
-  padding-left: 0 !important;
   color: #f04500;
+  padding-left: 0 !important;
 }
 
 .title-col .q-author {
@@ -241,8 +241,8 @@ input[type="submit"]:hover {
 }
 
 .content-arrow a {
-  text-decoration: none;
   color: #000;
+  text-decoration: none;
 }
 
 .content-arrow a:hover {
@@ -294,13 +294,13 @@ input[type="submit"]:hover {
 }
 
 .body-col .comments {
-  border-top: 1px solid #d3d1d1;
-  padding: 15px 15px 15px 15px;
-  color: #6c757d;
   background-color: white;
-  margin-bottom: 15px;
   border-radius: 0 0 5px 5px;
+  border-top: 1px solid #d3d1d1;
   box-shadow: 0 10px 25px rgba(0,0,0,0.05), 0 20px 48px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.1);
+  color: #6c757d;
+  margin-bottom: 15px;
+  padding: 15px 15px 15px 15px;
 }
 
 .body-col .comments span {
@@ -313,13 +313,22 @@ input[type="submit"]:hover {
 
 .res-col .r-body {
   background-color: white;
-  padding: 15px 15px 15px 15px;
-  margin-bottom: 15px;
   border-radius: 0 0 5px 5px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.05), 0 20px 48px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+  padding: 15px 15px 15px 15px;
 }
 
 .answer-col .r-title {
   border-bottom: 1px solid #d3d1d1;
   margin-bottom: 10px;
+}
+
+.custom-button {
+  background-color: transparent !important;
+  border: none !important;
+  color: rgba(255, 255, 255, 0.5);
+  &:hover {
+    color: #dc3545;
+  }
 }
